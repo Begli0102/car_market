@@ -1,7 +1,7 @@
 import { CarProps } from '../interface'
 
-export const fetchCars = async (model: string) => {
-  const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=${model}`
+export const fetchCars = async () => {
+  const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla'
   const headers = {
     'X-RapidAPI-Key': '985b125733msh533c515e3e69582p1cce0ajsn6afc34aec995',
     'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'

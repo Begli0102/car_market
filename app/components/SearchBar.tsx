@@ -8,12 +8,14 @@ import Image from 'next/image'
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState<string | null>('')
   const [inputValue, setInputValue] = useState<string>('')
-  const [model, setModel] = useState<string>('')
+  const [model, setModel] = useState<string | null>('')
 
   // const handleChange = (event: any) => {
   //   const newValue = event.target.value
   //   setInputValue(newValue)
   // }
+  console.log(manufacturer)
+  console.log(model)
 
   return (
     <>
@@ -46,23 +48,12 @@ const SearchBar = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Autocomplete
-              disablePortal
-              id='combo-box-demo'
-              options={manufacturers}
-              // sx={{ maxWidth: 250 }}
-              renderInput={params => (
-                <TextField {...params} label='Manufacturer' />
-              )}
-              value={manufacturer}
-              onChange={(event: any, newValue: string | null) => {
-                setManufacturer(newValue)
-              }}
-              inputValue={model}
-              onInputChange={(event, newInputValue) => {
-                setModel(newInputValue)
-              }}
+            <TextField
+              label='Model'
+              value={model}
+              onChange={(e: any) => setModel(e.target.value)}
             />
+
             <Image
               src={'/magnifying-glass.svg'}
               alt={'magnifying glass'}
