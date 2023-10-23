@@ -1,11 +1,9 @@
 import React from 'react'
 
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
-  DialogActions,
   Typography,
   IconButton
 } from '@mui/material'
@@ -73,7 +71,7 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
             <Image
               height='100'
               width='150'
-              src={generateImageUrl(car, '33')}
+              src={generateImageUrl(car, '19')}
               alt='car model'
               priority
             />
@@ -90,9 +88,7 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
           {Object.entries(car).map(([key, value]) => (
             <div className={styles.card__entries} key={key}>
               <Typography gutterBottom>{key.split('_').join(' ')}</Typography>
-              <Typography gutterBottom textAlign='left'>
-                {value}
-              </Typography>
+              <Typography gutterBottom>{value}</Typography>
             </div>
           ))}
         </DialogContent>

@@ -1,66 +1,72 @@
 'use client'
 import { Autocomplete, FormControl, TextField, Grid } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import styles from '../page.module.css'
 import { manufacturers } from '../consonants/index'
-import Image from 'next/image'
 
 const SearchBar = () => {
-  const [manufacturer, setManufacturer] = useState<string | null>('')
-  const [inputValue, setInputValue] = useState<string>('')
-  const [model, setModel] = useState<string | null>('')
+  const [manufacturer, setManufacturer] = useState<string>('')
+  const [model, setModel] = useState<string>('')
 
-  // const handleChange = (event: any) => {
-  //   const newValue = event.target.value
-  //   setInputValue(newValue)
-  // }
+  const router = useRouter()
+
   console.log(manufacturer)
   console.log(model)
+  const handleSearch = (e: any) => {
+    e.preventDefault()
+    if (manufacturer === '' || model === '') {
+      return alert('Please fill the blank')
+    }
+    updateSearchParams(
+      model.toLocaleUpperCase(),
+      manufacturer.toLocaleUpperCase()
+    )
+  }
 
+  const updateSearchParams = (model: string, manufacturer: string) => {
+    // Create a new URLSearchParams object using the current URL search parameters
+    const searchParams = new URLSearchParams(window.location.search)
+    if (model) {
+      searchParams.set('model', model)
+    } else {
+      searchParams.delete('model')
+    }
+    if (manufacturer) {
+      searchParams.set('manufacturer', manufacturer)
+    } else {
+      searchParams.delete('manufacturer')
+    }
+    // Generate the new pathname with the updated search parameters
+    const newPathname = `${window.location.pathname}?${searchParams.toString()}`
+
+    router.push(newPathname)
+  }
   return (
     <>
-      <FormControl fullWidth defaultValue='' required>
+      <FormControl fullWidth required>
         <Grid justifyContent='center' container spacing={1}>
           <Grid item xs={12} md={6}>
             <Autocomplete
               disablePortal
               id='combo-box-demo'
               options={manufacturers}
-              sx={{ maxWidth: 250 }}
               renderInput={params => (
                 <TextField {...params} label='Manufacturer' />
               )}
               value={manufacturer}
-              onChange={(event: any, newValue: string | null) => {
+              onInputChange={(event: any, newValue: string) => {
                 setManufacturer(newValue)
               }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue)
-              }}
-            />
-            <Image
-              src={'/magnifying-glass.svg'}
-              alt={'magnifying glass'}
-              width={40}
-              height={40}
-              className='object-contain'
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               label='Model'
               value={model}
-              onChange={(e: any) => setModel(e.target.value)}
+              onChange={(event: any) => setModel(event.target.value)}
             />
-
-            <Image
-              src={'/magnifying-glass.svg'}
-              alt={'magnifying glass'}
-              width={40}
-              height={40}
-              className='object-contain'
-            />
+            <SearchIcon onClick={handleSearch} />
           </Grid>
         </Grid>
       </FormControl>

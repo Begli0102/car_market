@@ -1,7 +1,9 @@
-import { CarProps } from '../interface'
+import { CarProps, FilterProps } from '../interface'
 
-export const fetchCars = async () => {
-  const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla'
+//** Fetching cars from an API*/
+export const fetchCars = async (filters: FilterProps) => {
+  const { manufacturer, model } = filters
+  const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}`
   const headers = {
     'X-RapidAPI-Key': '985b125733msh533c515e3e69582p1cce0ajsn6afc34aec995',
     'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
@@ -11,6 +13,7 @@ export const fetchCars = async () => {
   return data
 }
 
+//**Calculating the rent for one day */
 export const calculateCarRentalCost = (city_mpg: number, year: number) => {
   // Calculate the base cost of the rental
   const basePricePerDay = 50 // Base rental price per day in dollars
@@ -27,6 +30,7 @@ export const calculateCarRentalCost = (city_mpg: number, year: number) => {
   return rentalRatePerDay.toFixed(0)
 }
 
+//** Generating an angle of images in modal dialog */
 export const generateImageUrl = (car: CarProps, angle?: string) => {
   const url = new URL('https://cdn.imagin.studio/getimage')
   const { make, model, year } = car

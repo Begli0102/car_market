@@ -3,11 +3,15 @@ import CarCard from './components/CarCard'
 import CustomFilter from './components/CustomFilter'
 import Headers from './components/Header'
 import SearchBar from './components/SearchBar'
+import { HomeProps } from './interface'
 import styles from './page.module.css'
 import { fetchCars } from './utils'
 
-export default async function Home () {
-  const allCars = await fetchCars()
+export default async function Home ({ searchParams }: HomeProps) {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer,
+    model: searchParams.model
+  })
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 

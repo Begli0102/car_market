@@ -107,7 +107,6 @@
 .footer__link {
   width: 100%;
   margin-right: 15px;
-  
 }
 .footer__link a {
   color: rgb(138, 134, 134);
@@ -141,6 +140,7 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  position: relative;
 }
 .card__entries {
   width: 100%;
