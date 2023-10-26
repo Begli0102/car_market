@@ -33,12 +33,14 @@ const CarCard = ({ car }: ICars) => {
   return (
     <>
       <Card sx={{ maxWidth: 405 }}>
-        <Typography variant='body1' color='text.primary'>
-          {make.toUpperCase()} {model}
-        </Typography>
-        <Typography variant='body2' color='text.secondary'>
-          $ {totalCost}/day
-        </Typography>
+        <div className={styles.details__title}>
+          <Typography variant='body1' color='text.primary'>
+            {make.toUpperCase()} {model}
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            $ {totalCost}/day
+          </Typography>
+        </div>
         <Image
           height='150'
           width='250'

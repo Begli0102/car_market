@@ -11,17 +11,12 @@ const SearchBar = () => {
 
   const router = useRouter()
 
-  console.log(manufacturer)
-  console.log(model)
   const handleSearch = (e: any) => {
     e.preventDefault()
     if (manufacturer === '' || model === '') {
       return alert('Please fill the blank')
     }
-    updateSearchParams(
-      model.toLocaleUpperCase(),
-      manufacturer.toLocaleUpperCase()
-    )
+    updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase())
   }
 
   const updateSearchParams = (model: string, manufacturer: string) => {
@@ -52,7 +47,7 @@ const SearchBar = () => {
               id='combo-box-demo'
               options={manufacturers}
               renderInput={params => (
-                <TextField {...params} label='Manufacturer' />
+                <TextField {...params} label='Manufacturer' size='small' />
               )}
               value={manufacturer}
               onInputChange={(event: any, newValue: string) => {
@@ -65,6 +60,7 @@ const SearchBar = () => {
               label='Model'
               value={model}
               onChange={(event: any) => setModel(event.target.value)}
+              size='small'
             />
             <SearchIcon onClick={handleSearch} />
           </Grid>
