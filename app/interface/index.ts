@@ -27,7 +27,7 @@ export interface HomeProps {
 
 export interface OptionProps {
   title: string
-  value: string;
+  value: string
 }
 
 export interface CustomFilterProps {
@@ -35,3 +35,7 @@ export interface CustomFilterProps {
   options: OptionProps[]
 }
 
+export interface ShowMoreProps {
+  pageNumber: number
+  isNext: boolean
+}
