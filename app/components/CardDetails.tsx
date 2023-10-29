@@ -30,11 +30,10 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
         open={isOpen}
         onClose={handleCloseDialog}
         aria-labelledby='responsive-dialog-title'
-        fullWidth
       >
         <DialogTitle
           id='customized-dialog-title'
-          sx={{ display: 'flex', alignItems: 'center' }}
+          sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
         >
           <Image
             height='100'
@@ -43,7 +42,7 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
             alt='car model'
             objectFit='contain'
           />
-          <Typography gutterBottom>{car.make.toUpperCase()} </Typography>&nbsp;
+          <Typography gutterBottom>{car.make.toUpperCase()} </Typography>
           <Typography gutterBottom> {car.model}</Typography>
         </DialogTitle>
         <IconButton
@@ -59,29 +58,37 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-          <div className={styles.card__images}>
-            <Image
-              height='100'
-              width='150'
-              src={generateImageUrl(car, '29')}
-              alt='car model'
-              objectFit='contain'
-              priority
-            />
-            <Image
-              height='100'
-              width='150'
-              src={generateImageUrl(car, '19')}
-              alt='car model'
-              priority
-            />
-            <Image
-              height='100'
-              width='150'
-              src={generateImageUrl(car, '13')}
-              alt='car model'
-              priority
-            />
+          <div className={styles.image__container}>
+            <div className={styles.image__container__item}>
+              <Image
+                src={generateImageUrl(car, '29')}
+                alt='car model'
+                width='140'
+                height='100'
+                priority
+                className={styles.image}
+              />
+            </div>
+            <div className={styles.image__container__item}>
+              <Image
+                src={generateImageUrl(car, '19')}
+                alt='car model'
+                width='140'
+                height='100'
+                priority
+                className={styles.image}
+              />
+            </div>
+            <div className={styles.image__container__item}>
+              <Image
+                src={generateImageUrl(car, '13')}
+                alt='car model'
+                width='140'
+                height='100'
+                priority
+                className={styles.image}
+              />
+            </div>
           </div>
         </DialogContent>
         <DialogContent dividers>

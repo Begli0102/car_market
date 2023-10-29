@@ -13,10 +13,18 @@ const Headers = () => {
       <Grid className={styles.header__item} container spacing={2}>
         <Grid item xs={12} md={6}>
           <div className={styles.header__left}>
-            <Typography variant='body1' className={styles.header__title}>
+            <Typography
+              variant='h4'
+              gutterBottom
+              className={styles.header__title}
+            >
               Find, book, rent a car—quick and super easy!
             </Typography>
-            <Typography variant='body2' className={styles.header__subtitle}>
+            <Typography
+              variant='h5'
+              gutterBottom
+              className={styles.header__subtitle}
+            >
               Streamline your car rental experience with our effortless booking
               process.
             </Typography>

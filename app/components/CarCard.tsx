@@ -32,7 +32,7 @@ const CarCard = ({ car }: ICars) => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 405 }}>
+      <Card sx={{ minWidth: 305 }}>
         <div className={styles.details__title}>
           <Typography variant='body1' color='text.primary'>
             {make.toUpperCase()} {model}

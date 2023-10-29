@@ -1,8 +1,9 @@
 /* Home */
-.main {
+/* .main {
   display: flex;
   flex-direction: column;
-}
+  height: auto;
+} */
 .search__container {
   width: 80%;
   justify-content: center;
@@ -59,14 +60,12 @@
 }
 
 .header__title {
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 .header__subtitle {
-  font-size: 1.2rem;
   color: rgb(43 44 53);
-  font-weight: 800;
+  font-weight: bolder;
   margin-bottom: 20px;
 }
 
@@ -140,11 +139,15 @@
   justify-content: center;
   align-items: center;
 }
-.card__images {
-  width: 100%;
+/* Card */
+
+/* Modal Dialog */
+.image__container {
   display: flex;
-  justify-content: space-evenly;
-  position: relative;
+  width: 100%;
+}
+.image {
+  object-fit: contain;
 }
 .card__entries {
   width: 100%;
@@ -152,11 +155,12 @@
   justify-content: space-between;
   text-transform: capitalize;
 }
-/* Card */
+/* Modal Dialog */
 
 /* ShowMore */
 .show__more__container {
   margin-top: 20px;
   margin-bottom: 10px;
+  width: 100%;
 }
 /* ShowMore */
