@@ -1,4 +1,5 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography, CircularProgress, Stack, Alert } from '@mui/material'
+import { Suspense } from 'react'
 import CarCard from './components/CarCard'
 import CustomFilter from './components/CustomFilter'
 import Headers from './components/Header'
@@ -32,15 +33,24 @@ export default async function Home ({ searchParams }: HomeProps) {
           </Grid>
         </Grid>
       </div>
+
       {!isDataEmpty ? (
         <div className={styles.result__container}>
           {allCars.map(car => (
+            // <Suspense fallback={<CircularProgress />}>
             <CarCard car={car} />
+            // </Suspense>
           ))}
         </div>
       ) : (
         <div className={styles.error__container}>
-          <Typography variant='body1'>Oops, no results</Typography>
+          <Stack sx={{ minWidth: '300px' }}>
+            <Alert severity='warning'>
+              <Typography variant='body2' gutterBottom>
+                Oops, no results
+              </Typography>
+            </Alert>
+          </Stack>
         </div>
       )}
       <ShowMore

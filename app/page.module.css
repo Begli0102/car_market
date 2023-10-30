@@ -16,6 +16,11 @@
   gap: 20px;
   justify-content: center;
 }
+.error__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 /* Home */
 
 /* Navbar */

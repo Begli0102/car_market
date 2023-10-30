@@ -5,7 +5,9 @@ import {
   DialogContent,
   DialogTitle,
   Typography,
-  IconButton
+  IconButton,
+  Grid,
+  Divider
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import Image from 'next/image'
@@ -31,19 +33,30 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
         onClose={handleCloseDialog}
         aria-labelledby='responsive-dialog-title'
       >
-        <DialogTitle
-          id='customized-dialog-title'
-          sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-        >
-          <Image
-            height='100'
-            width='150'
-            src={generateImageUrl(car)}
-            alt='car model'
-            objectFit='contain'
-          />
-          <Typography gutterBottom>{car.make.toUpperCase()} </Typography>
-          <Typography gutterBottom> {car.model}</Typography>
+        <DialogTitle id='customized-dialog-title'>
+          <Grid
+            container
+            spacing={3}
+            justifyContent='center'
+            alignItems='center'
+
+            // sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            <Grid item xs={12} md={3}>
+              <Image
+                height='90'
+                width='140'
+                src={generateImageUrl(car)}
+                alt='car model'
+                style={{ objectFit: 'contain' }}
+              />
+            </Grid>
+            <Grid item xs={12} md={9}>
+              <Typography mt={1} variant='body2'>
+                {car.make.toUpperCase()} {car.model}
+              </Typography>
+            </Grid>
+          </Grid>
         </DialogTitle>
         <IconButton
           aria-label='close'
@@ -69,9 +82,10 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
                 className={styles.image}
               />
             </div>
+            <Divider orientation='vertical' flexItem></Divider>
             <div className={styles.image__container__item}>
               <Image
-                src={generateImageUrl(car, '19')}
+                src={generateImageUrl(car, '23')}
                 alt='car model'
                 width='140'
                 height='100'
@@ -79,6 +93,7 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
                 className={styles.image}
               />
             </div>
+            <Divider orientation='vertical' flexItem></Divider>
             <div className={styles.image__container__item}>
               <Image
                 src={generateImageUrl(car, '13')}
