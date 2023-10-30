@@ -45,7 +45,11 @@ export default async function Home ({ searchParams }: HomeProps) {
       ) : (
         <div className={styles.error__container}>
           <Stack sx={{ minWidth: '300px' }}>
-            <Alert severity='warning'>
+            <Alert
+              variant='filled'
+              severity='warning'
+              sx={{ alignItems: 'center' }}
+            >
               <Typography variant='body2' gutterBottom>
                 Oops, no results
               </Typography>
