@@ -1,8 +1,15 @@
 'use client'
 import React, { useState } from 'react'
-import { Autocomplete, FormControl, Grid, TextField } from '@mui/material'
+import {
+  Autocomplete,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  TextField
+} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { SelectChangeEvent } from '@mui/material/Select'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { useRouter } from 'next/navigation'
 import { fuels, yearsOfProduction } from '../consonants'
 
@@ -34,12 +41,34 @@ const CustomFilter = () => {
 
     router.push(newPathname)
   }
+
+  const handleChangeFuel = (event: SelectChangeEvent) => {
+    setFuel(event.target.value as string)
+  }
+
+  const handleChangeYear = (event: SelectChangeEvent) => {
+    setYear(event.target.value as string)
+  }
+
   return (
     <>
-      <FormControl fullWidth required>
-        <Grid justifyContent='center' container spacing={1}>
-          <Grid item xs={12} md={6}>
-            <Autocomplete
+      <Grid justifyContent='center' container spacing={1}>
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth required>
+            <InputLabel id='demo-simple-select-label'>Fuel</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={fuel}
+              label='Age'
+              onChange={handleChangeFuel}
+            >
+              {fuels.map(fuel => (
+                <MenuItem value={fuel.value}>{fuel.title}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {/* <Autocomplete
               inputValue={fuel}
               onInputChange={(event, newInputValue) => {
                 setFuel(newInputValue)
@@ -49,10 +78,24 @@ const CustomFilter = () => {
               renderInput={params => (
                 <TextField {...params} label='Fuel' size='small' />
               )}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Autocomplete
+            /> */}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth required>
+            <InputLabel id='demo-simple-select-label'>Year</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={year}
+              label='Age'
+              onChange={handleChangeYear}
+            >
+              {yearsOfProduction.map(item => (
+                <MenuItem value={item.value}>{item.title}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {/* <Autocomplete
               inputValue={year}
               onInputChange={(event, newInputValue) => {
                 setYear(newInputValue)
@@ -62,11 +105,10 @@ const CustomFilter = () => {
               renderInput={params => (
                 <TextField {...params} label='Year' size='small' />
               )}
-            />
-            <SearchIcon onClick={handleSearch} />
-          </Grid>
+            /> */}
         </Grid>
-      </FormControl>
+        <SearchIcon onClick={handleSearch} />
+      </Grid>
     </>
   )
 }

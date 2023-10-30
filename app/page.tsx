@@ -29,7 +29,7 @@ export default async function Home ({ searchParams }: HomeProps) {
             <SearchBar />
           </Grid>
           <Grid item xs={12} md={4}>
-            <CustomFilter />
+            {/* <CustomFilter /> */}
           </Grid>
         </Grid>
       </div>
