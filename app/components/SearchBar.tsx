@@ -1,6 +1,14 @@
 'use client'
-import { Autocomplete, FormControl, TextField, Grid } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
+import {
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+  TextField,
+  Grid,
+  SelectChangeEvent,
+  Button
+} from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { manufacturers } from '../consonants/index'
@@ -17,6 +25,8 @@ const SearchBar = () => {
       return alert('Please fill the blank')
     }
     updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase())
+    setManufacturer('')
+    setModel('')
   }
 
   const updateSearchParams = (model: string, manufacturer: string) => {
@@ -37,35 +47,58 @@ const SearchBar = () => {
 
     router.push(newPathname)
   }
+
+  const handleChangeManufacturer = (event: SelectChangeEvent) => {
+    setManufacturer(event.target.value as string)
+  }
+
+  const handleChangeModel = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setModel(event.target.value as string)
+  }
+
   return (
     <>
-      <FormControl fullWidth required>
-        <Grid justifyContent='center' container spacing={1}>
-          <Grid item xs={12} md={6}>
-            <Autocomplete
-              disablePortal
-              id='combo-box-demo'
-              options={manufacturers}
-              renderInput={params => (
-                <TextField {...params} label='Manufacturer' size='small' />
-              )}
+      <Grid justifyContent='center' container spacing={1}>
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth required>
+            <InputLabel id='demo-controlled-open-select-label'>
+              Select a car
+            </InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
               value={manufacturer}
-              onInputChange={(event: any, newValue: string) => {
-                setManufacturer(newValue)
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
+              label='Select a car'
+              onChange={handleChangeManufacturer}
+              size='small'
+              error={!manufacturer ? true : false}
+            >
+              {manufacturers.map((manufacurer, index: number) => (
+                <MenuItem key={index} value={manufacurer}>
+                  {manufacurer}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <FormControl fullWidth required>
             <TextField
               label='Model'
               value={model}
-              onChange={(event: any) => setModel(event.target.value)}
+              onChange={handleChangeModel}
               size='small'
             />
-            <SearchIcon onClick={handleSearch} />
-          </Grid>
+          </FormControl>
         </Grid>
-      </FormControl>
+        <Grid item xs={12} md={2}>
+          <FormControl fullWidth required>
+            <Button variant='contained' onClick={handleSearch}>
+              Search
+            </Button>
+          </FormControl>
+        </Grid>
+      </Grid>
     </>
   )
 }
