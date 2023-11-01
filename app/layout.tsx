@@ -3,6 +3,8 @@ import { Metadata } from 'next'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { Poppins } from 'next/font/google'
+import Header from './components/Header'
+import SearchBar from './components/SearchBar'
 
 export const metadata: Metadata = {
   title: 'Car Market',
@@ -23,6 +25,8 @@ export default function RootLayout ({
     <html lang='en'>
       <body className={poppins.className}>
         <Navbar />
+        <Header />
+        <SearchBar />
         {children}
         <Footer />
       </body>

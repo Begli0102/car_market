@@ -5,7 +5,7 @@ import { Button } from '@/stories/Button'
 import { Typography, Grid } from '@mui/material'
 import headerImage from '../../public/hero.png'
 
-const Headers = () => {
+const Header = () => {
   const handleScroll = () => {}
 
   return (
@@ -56,4 +56,4 @@ const Headers = () => {
   )
 }
 
-export default Headers
+export default Header

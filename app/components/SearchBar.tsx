@@ -12,6 +12,7 @@ import {
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { manufacturers } from '../consonants/index'
+import styles from '../page.module.css'
 
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState<string>('')
@@ -57,9 +58,9 @@ const SearchBar = () => {
   }
 
   return (
-    <>
+    <div className={styles.search__container}>
       <Grid justifyContent='center' container spacing={1}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <FormControl fullWidth required>
             <InputLabel id='demo-controlled-open-select-label'>
               Select a car
@@ -71,7 +72,7 @@ const SearchBar = () => {
               label='Select a car'
               onChange={handleChangeManufacturer}
               size='small'
-              error={!manufacturer ? true : false}
+              // error={!manufacturer ? true : false}
             >
               {manufacturers.map((manufacurer, index: number) => (
                 <MenuItem key={index} value={manufacurer}>
@@ -81,7 +82,7 @@ const SearchBar = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <FormControl fullWidth required>
             <TextField
               label='Model'
@@ -99,7 +100,7 @@ const SearchBar = () => {
           </FormControl>
         </Grid>
       </Grid>
-    </>
+    </div>
   )
 }
 

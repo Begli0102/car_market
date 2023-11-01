@@ -1,9 +1,7 @@
 /* Home */
-/* .main {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-} */
+.main {
+  height: 100%;
+}
 .search__container {
   width: 80%;
   justify-content: center;
@@ -170,3 +168,12 @@
 }
 /* ShowMore */
 
+/* Loading */
+
+.loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+/* Loading */

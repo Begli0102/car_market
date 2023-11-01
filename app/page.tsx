@@ -1,11 +1,9 @@
-import { Grid, Typography, CircularProgress, Stack, Alert } from '@mui/material'
+import { Typography, Stack, Alert } from '@mui/material'
 import { Suspense } from 'react'
 import CarCard from './components/CarCard'
-import CustomFilter from './components/CustomFilter'
-import Headers from './components/Header'
-import SearchBar from './components/SearchBar'
 import ShowMore from './components/ShowMore'
 import { HomeProps } from './interface'
+import Loading from './loading'
 import styles from './page.module.css'
 import { fetchCars } from './utils'
 
@@ -22,24 +20,12 @@ export default async function Home ({ searchParams }: HomeProps) {
 
   return (
     <main className={styles.main}>
-      <Headers />
-      <div className={styles.search__container}>
-        <Grid justifyContent='center' container spacing={3}>
-          <Grid item xs={12} md={8}>
-            <SearchBar />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            {/* <CustomFilter /> */}
-          </Grid>
-        </Grid>
-      </div>
-
       {!isDataEmpty ? (
         <div className={styles.result__container}>
           {allCars.map(car => (
-            // <Suspense fallback={<CircularProgress />}>
-            <CarCard car={car} />
-            // </Suspense>
+            <Suspense fallback={<Loading />}>
+              <CarCard car={car} />
+            </Suspense>
           ))}
         </div>
       ) : (
