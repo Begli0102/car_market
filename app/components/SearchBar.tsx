@@ -20,7 +20,7 @@ const SearchBar = () => {
 
   const router = useRouter()
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (manufacturer === '' || model === '') {
       return alert('Please fill the blank')
@@ -60,7 +60,7 @@ const SearchBar = () => {
   return (
     <div className={styles.search__container}>
       <Grid justifyContent='center' container spacing={1}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <FormControl fullWidth required>
             <InputLabel id='demo-controlled-open-select-label'>
               Select a car
@@ -72,7 +72,6 @@ const SearchBar = () => {
               label='Select a car'
               onChange={handleChangeManufacturer}
               size='small'
-              // error={!manufacturer ? true : false}
             >
               {manufacturers.map((manufacurer, index: number) => (
                 <MenuItem key={index} value={manufacurer}>
@@ -82,7 +81,7 @@ const SearchBar = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={2}>
           <FormControl fullWidth required>
             <TextField
               label='Model'
@@ -92,7 +91,7 @@ const SearchBar = () => {
             />
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={1}>
           <FormControl fullWidth required>
             <Button variant='contained' onClick={handleSearch}>
               Search

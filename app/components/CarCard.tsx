@@ -12,7 +12,6 @@ import { CarProps } from '../interface'
 import { calculateCarRentalCost, generateImageUrl } from '../utils'
 import styles from '../page.module.css'
 import Image from 'next/image'
-// import { Button } from '@/stories/Button'
 import CardDetails from './CardDetails'
 
 interface ICars {

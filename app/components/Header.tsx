@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <Grid className={styles.header__item} container spacing={2}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={6}>
           <div className={styles.header__left}>
             <Typography
               variant='h4'
@@ -36,19 +36,15 @@ const Header = () => {
             />
           </div>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={10} md={4}>
           <div className={styles.image__container}>
-            {/* <div > */}
             <Image
               src={headerImage}
-              layout='fill'
+              fill
               alt='image'
               className={styles.image}
-              // width={500}
-              // height={400}
               style={{ objectFit: 'contain' }}
             />
-            {/* </div> */}
           </div>
         </Grid>
       </Grid>
