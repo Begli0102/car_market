@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import styles from '../page.module.css'
-import { Button } from '@/stories/Button'
 import { Typography, Grid, Chip } from '@mui/material'
 import headerImage from '../../public/hero.png'
 
