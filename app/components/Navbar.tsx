@@ -2,8 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../page.module.css'
-
-import { Button } from '@/stories/Button'
+import { Chip } from '@mui/material'
 
 const Navbar = () => (
   <header className={styles.navbar__container}>
@@ -15,9 +14,12 @@ const Navbar = () => (
           width={118}
           height={40}
           className={styles.logo_for_navbar}
+          style={{ objectFit: 'contain' }}
         />
       </Link>
-      <Button secondary size='small' title='Sign up' />
+      <div className={styles.navbar__chip}>
+        <Chip label='Sign up' variant='outlined' sx={{ color: '#ffff' }} />
+      </div>
     </nav>
   </header>
 )

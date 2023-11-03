@@ -45,7 +45,7 @@ const CarCard = ({ car }: ICars) => {
           width='250'
           src={generateImageUrl(car)}
           alt='car model'
-          objectFit='contain'
+          style={{ objectFit: 'contain' }}
         />
         <CardContent sx={{ backgroundColor: '#eaeaea' }}>
           <div className={styles.details__container}>
@@ -55,17 +55,30 @@ const CarCard = ({ car }: ICars) => {
                 width={15}
                 height={15}
                 alt='steering wheel'
+                style={{ objectFit: 'contain' }}
               />
               <Typography variant='body2'>
                 {transmission === 'a' ? 'Automatic' : 'Manual'}
               </Typography>
             </div>
             <div className={styles.card__details}>
-              <Image src='/tire.svg' width={15} height={15} alt='seat' />
+              <Image
+                src='/tire.svg'
+                width={15}
+                height={15}
+                alt='seat'
+                style={{ objectFit: 'contain' }}
+              />
               <Typography variant='body2'>{drive.toUpperCase()}</Typography>
             </div>
             <div className={styles.card__details}>
-              <Image src='/gas.svg' width={15} height={15} alt='seat' />
+              <Image
+                src='/gas.svg'
+                width={15}
+                height={15}
+                alt='seat'
+                style={{ objectFit: 'contain' }}
+              />
               <Typography variant='body2' gutterBottom>
                 {city_mpg}
                 MPG

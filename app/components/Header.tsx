@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import styles from '../page.module.css'
 import { Button } from '@/stories/Button'
-import { Typography, Grid } from '@mui/material'
+import { Typography, Grid, Chip } from '@mui/material'
 import headerImage from '../../public/hero.png'
 
 const Header = () => {
@@ -28,10 +28,10 @@ const Header = () => {
               Streamline your car rental experience with our effortless booking
               process.
             </Typography>
-            <Button
-              primary
-              size='small'
-              title='Explore Cars'
+            <Chip
+              label='Explore Cars'
+              variant='filled'
+              color='primary'
               onClick={handleScroll}
             />
           </div>
