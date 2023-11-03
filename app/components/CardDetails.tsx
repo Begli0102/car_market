@@ -32,30 +32,32 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
         open={isOpen}
         onClose={handleCloseDialog}
         aria-labelledby='responsive-dialog-title'
+        maxWidth='xs'
       >
-        <DialogTitle id='customized-dialog-title'>
+        <div className={styles.title__container}>
           <Grid
             container
-            spacing={3}
             justifyContent='center'
             alignItems='center'
           >
-            <Grid item xs={12} md={3}>
-              <Image
-                height='90'
-                width='140'
-                src={generateImageUrl(car)}
-                alt='car model'
-                style={{ objectFit: 'contain' }}
-              />
+            <Grid item xs={12} md={4}>
+              <div className={styles.card__image}>
+                <Image
+                  height='90'
+                  width='140'
+                  src={generateImageUrl(car)}
+                  alt='car model'
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
             </Grid>
-            <Grid item xs={12} md={9}>
-              <Typography mt={1} variant='body2'>
+            <Grid item xs={12} md={8}>
+              <Typography variant='body2' gutterBottom>
                 {car.make.toUpperCase()} {car.model}
               </Typography>
             </Grid>
           </Grid>
-        </DialogTitle>
+        </div>
         <IconButton
           aria-label='close'
           onClick={handleCloseDialog}

@@ -22,7 +22,7 @@ const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
           label='Show More'
           color='primary'
           onClick={handleShowMore}
-          disabled={!isNext}
+          disabled={isNext}
         />
       </Box>
     </div>
