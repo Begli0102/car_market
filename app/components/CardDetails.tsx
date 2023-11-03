@@ -39,8 +39,6 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
             spacing={3}
             justifyContent='center'
             alignItems='center'
-
-            // sx={{ display: 'flex', alignItems: 'center' }}
           >
             <Grid item xs={12} md={3}>
               <Image

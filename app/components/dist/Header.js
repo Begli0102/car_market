@@ -16,6 +16,6 @@ var Header = function () {
                     React.createElement(material_1.Chip, { label: 'Explore Cars', variant: 'filled', color: 'primary', onClick: handleScroll }))),
             React.createElement(material_1.Grid, { item: true, xs: 10, md: 4 },
                 React.createElement("div", { className: page_module_css_1["default"].image__container },
-                    React.createElement(image_1["default"], { src: hero_png_1["default"], fill: true, alt: 'image', className: page_module_css_1["default"].image, style: { objectFit: 'contain' } }))))));
+                    React.createElement(image_1["default"], { src: hero_png_1["default"], alt: 'image', className: page_module_css_1["default"].image, style: { objectFit: 'contain' }, priority: true }))))));
 };
 exports["default"] = Header;

@@ -15,16 +15,16 @@ export default async function Home ({ searchParams }: HomeProps) {
     fuel: searchParams.fuel || '',
     limit: searchParams.limit || 10
   })
-
+ 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
   return (
     <main className={styles.main}>
       {!isDataEmpty ? (
         <div className={styles.result__container}>
-          {allCars.map(car => (
+          {allCars.map((car,index) => (
             <Suspense fallback={<Loading />}>
-              <CarCard car={car} />
+              <CarCard  key={index} car={car} />
             </Suspense>
           ))}
         </div>

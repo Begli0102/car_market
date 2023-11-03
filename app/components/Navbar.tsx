@@ -15,6 +15,7 @@ const Navbar = () => (
           height={40}
           className={styles.logo_for_navbar}
           style={{ objectFit: 'contain' }}
+          priority
         />
       </Link>
       <div className={styles.navbar__chip}>

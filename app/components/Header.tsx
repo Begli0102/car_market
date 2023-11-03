@@ -39,10 +39,10 @@ const Header = () => {
           <div className={styles.image__container}>
             <Image
               src={headerImage}
-              fill
               alt='image'
               className={styles.image}
               style={{ objectFit: 'contain' }}
+              priority
             />
           </div>
         </Grid>
