@@ -1,16 +1,17 @@
 'use client'
+
 import { Chip, Box } from '@mui/material'
 import React from 'react'
-import { ShowMoreProps } from '../interface'
+import { ShowLessProps } from '../interface'
 import { useRouter } from 'next/navigation'
 import { updateSearchParams } from '../utils'
 import styles from '../page.module.css'
 
-const ShowMore = ({ pageNumber }: ShowMoreProps) => {
+const ShowLess = ({ pageNumber }: ShowLessProps) => {
   const router = useRouter()
 
-  const handleShowMore = () => {
-    const newLimit = (pageNumber + 1) * 10
+  const handleShowLess = () => {
+    const newLimit = pageNumber * 10 - 10
     const newPathName = updateSearchParams('limit', `${newLimit}`)
     router.push(newPathName)
   }
@@ -20,13 +21,13 @@ const ShowMore = ({ pageNumber }: ShowMoreProps) => {
       <Box textAlign='center'>
         <Chip
           sx={{ minWidth: '180px' }}
-          label='Show More'
-          color='primary'
-          onClick={handleShowMore}
+          label='Show less'
+          color='secondary'
+          onClick={handleShowLess}
         />
       </Box>
     </div>
   )
 }
 
-export default ShowMore
+export default ShowLess

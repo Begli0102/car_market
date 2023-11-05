@@ -17,7 +17,7 @@ export interface FilterProps {
   manufacturer?: string
   year?: number
   model?: string
-  limit?: number
+  limit?: number | undefined
   fuel?: string
 }
 
@@ -37,5 +37,8 @@ export interface CustomFilterProps {
 
 export interface ShowMoreProps {
   pageNumber: number
-  isNext: boolean
+}
+
+export interface ShowLessProps {
+  pageNumber: number
 }
