@@ -7,14 +7,15 @@ import {
   TextField,
   Grid,
   SelectChangeEvent,
-  Button
+  Button,
+  Tooltip,
+  Zoom
 } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { manufacturers } from '../consonants/index'
 import styles from '../page.module.css'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
-// import { deleteSearchParams } from '../utils'
 
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState<string>('')
@@ -114,13 +115,18 @@ const SearchBar = () => {
           </FormControl>
         </Grid>
         <Grid item xs={2} md={1}>
-          <FormControl fullWidth required>
+          <Tooltip
+            title='Reset'
+            placement='bottom-end'
+            TransitionComponent={Zoom}
+            TransitionProps={{ timeout: 500 }}
+          >
             <RestartAltIcon
               color='primary'
               sx={{ fontSize: '38px' }}
               onClick={handleResetParams}
             />
-          </FormControl>
+          </Tooltip>
         </Grid>
       </Grid>
     </div>
