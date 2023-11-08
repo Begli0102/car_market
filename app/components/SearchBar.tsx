@@ -13,6 +13,8 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { manufacturers } from '../consonants/index'
 import styles from '../page.module.css'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
+// import { deleteSearchParams } from '../utils'
 
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState<string>('')
@@ -35,13 +37,9 @@ const SearchBar = () => {
     const searchParams = new URLSearchParams(window.location.search)
     if (model) {
       searchParams.set('model', model)
-    } else {
-      searchParams.delete('model')
     }
     if (manufacturer) {
       searchParams.set('manufacturer', manufacturer)
-    } else {
-      searchParams.delete('manufacturer')
     }
     // Generate the new pathname with the updated search parameters
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`
@@ -55,6 +53,23 @@ const SearchBar = () => {
 
   const handleChangeModel = (event: React.ChangeEvent<HTMLInputElement>) => {
     setModel(event.target.value as string)
+  }
+
+  const handleResetParams = () => {
+    const searchParams = new URLSearchParams(window.location.search)
+    if (searchParams.has('manufacturer')) {
+      searchParams.delete('manufacturer')
+    }
+    if (searchParams.has('model')) {
+      searchParams.delete('model')
+    }
+    if (searchParams.has('limit')) {
+      searchParams.delete('limit')
+    }
+
+    const newPathname = `${window.location.pathname}?${searchParams.toString()}`
+
+    router.push(newPathname)
   }
 
   return (
@@ -91,11 +106,20 @@ const SearchBar = () => {
             />
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={1}>
+        <Grid item xs={10} md={1}>
           <FormControl fullWidth required>
             <Button variant='contained' onClick={handleSearch}>
               Search
             </Button>
+          </FormControl>
+        </Grid>
+        <Grid item xs={2} md={1}>
+          <FormControl fullWidth required>
+            <RestartAltIcon
+              color='primary'
+              sx={{ fontSize: '38px' }}
+              onClick={handleResetParams}
+            />
           </FormControl>
         </Grid>
       </Grid>
