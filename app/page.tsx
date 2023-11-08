@@ -1,6 +1,7 @@
 import { Typography, Stack, Alert } from '@mui/material'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import CarCard from './components/CarCard'
+import ShowPagination from './components/Pagination'
 import ShowLess from './components/ShowLess'
 import ShowMore from './components/ShowMore'
 import { HomeProps } from './interface'
@@ -17,12 +18,14 @@ export default async function Home ({ searchParams }: HomeProps) {
     limit: searchParams.limit || 10
   })
 
+  console.log(searchParams.limit)
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
-  console.log(searchParams)
- 
 
   return (
     <main className={styles.main}>
+      {allCars.length > 10 && (
+        <ShowPagination limit={10} allCars={allCars.length} />
+      )}
       {!isDataEmpty ? (
         <div className={styles.result__container}>
           {allCars.map((car, index) => (
@@ -32,7 +35,7 @@ export default async function Home ({ searchParams }: HomeProps) {
           ))}
           <div className={styles.more_less_buttons}>
             <ShowMore pageNumber={(searchParams.limit || 10) / 10} />
-            {searchParams.limit > 10 && (
+            {Number(searchParams?.limit) > 10 && (
               <ShowLess pageNumber={(searchParams.limit || 10) / 10} />
             )}
           </div>

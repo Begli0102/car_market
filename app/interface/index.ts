@@ -17,7 +17,7 @@ export interface FilterProps {
   manufacturer?: string
   year?: number
   model?: string
-  limit?: number | undefined
+  limit?: number
   fuel?: string
 }
 
