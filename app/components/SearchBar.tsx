@@ -9,7 +9,8 @@ import {
   SelectChangeEvent,
   Button,
   Tooltip,
-  Zoom
+  Zoom,
+  Container
 } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
@@ -75,60 +76,62 @@ const SearchBar = () => {
 
   return (
     <div className={styles.search__container}>
-      <Grid justifyContent='center' container spacing={1}>
-        <Grid item xs={12} md={3}>
-          <FormControl fullWidth required>
-            <InputLabel id='demo-controlled-open-select-label'>
-              Select a car
-            </InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={manufacturer}
-              label='Select a car'
-              onChange={handleChangeManufacturer}
-              size='small'
+      <form>
+        <Grid justifyContent='center' container spacing={1}>
+          <Grid item xs={10} md={3}>
+            <FormControl fullWidth required>
+              <InputLabel id='demo-controlled-open-select-label'>
+                Select a car
+              </InputLabel>
+              <Select
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
+                value={manufacturer}
+                label='Select a car'
+                onChange={handleChangeManufacturer}
+                size='small'
+              >
+                {manufacturers.map((manufacurer, index: number) => (
+                  <MenuItem key={index} value={manufacurer}>
+                    {manufacurer}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={10} md={2}>
+            <FormControl fullWidth required>
+              <TextField
+                label='Model'
+                value={model}
+                onChange={handleChangeModel}
+                size='small'
+              />
+            </FormControl>
+          </Grid>
+          <Grid item xs={8} md={1}>
+            <FormControl fullWidth required>
+              <Button variant='contained' onClick={handleSearch}>
+                Search
+              </Button>
+            </FormControl>
+          </Grid>
+          <Grid item xs={2} md={1}>
+            <Tooltip
+              title='Reset'
+              placement='bottom-end'
+              TransitionComponent={Zoom}
+              TransitionProps={{ timeout: 500 }}
             >
-              {manufacturers.map((manufacurer, index: number) => (
-                <MenuItem key={index} value={manufacurer}>
-                  {manufacurer}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+              <RestartAltIcon
+                color='primary'
+                sx={{ fontSize: '38px' }}
+                onClick={handleResetParams}
+              />
+            </Tooltip>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={2}>
-          <FormControl fullWidth required>
-            <TextField
-              label='Model'
-              value={model}
-              onChange={handleChangeModel}
-              size='small'
-            />
-          </FormControl>
-        </Grid>
-        <Grid item xs={10} md={1}>
-          <FormControl fullWidth required>
-            <Button variant='contained' onClick={handleSearch}>
-              Search
-            </Button>
-          </FormControl>
-        </Grid>
-        <Grid item xs={2} md={1}>
-          <Tooltip
-            title='Reset'
-            placement='bottom-end'
-            TransitionComponent={Zoom}
-            TransitionProps={{ timeout: 500 }}
-          >
-            <RestartAltIcon
-              color='primary'
-              sx={{ fontSize: '38px' }}
-              onClick={handleResetParams}
-            />
-          </Tooltip>
-        </Grid>
-      </Grid>
+      </form>
     </div>
   )
 }
