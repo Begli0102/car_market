@@ -18,7 +18,6 @@ export default async function Home ({ searchParams }: HomeProps) {
     limit: searchParams.limit || 10
   })
 
-  console.log(searchParams.limit)
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
   return (
@@ -34,8 +33,10 @@ export default async function Home ({ searchParams }: HomeProps) {
             </Suspense>
           ))}
           <div className={styles.more_less_buttons}>
-            <ShowMore pageNumber={(searchParams.limit || 10) / 10} />
-            {Number(searchParams?.limit) > 10 && (
+            {allCars.length >= 10 && (
+              <ShowMore pageNumber={(searchParams.limit || 10) / 10} />
+            )}
+            {Number(searchParams?.limit) > 10 && allCars.length > 10 && (
               <ShowLess pageNumber={(searchParams.limit || 10) / 10} />
             )}
           </div>
