@@ -8,8 +8,6 @@ const ShowPagination = ({ limit, allCars, setCars }: any) => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
-  console.log('all', allCars)
-  console.log('limit', limit)
 
   return (
     <Stack>

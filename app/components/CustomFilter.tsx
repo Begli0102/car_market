@@ -29,7 +29,7 @@ const CustomFilter = () => {
   const updateSearchParams = (fuel: string, year: string) => {
     // Create a new URLSearchParams object using the current URL search parameters
     const searchParams = new URLSearchParams(window.location.search)
-    console.log(searchParams)
+   
     if (fuel) {
       searchParams.set('fuel', fuel)
     }

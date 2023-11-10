@@ -23,25 +23,32 @@ interface IValues {
 }
 
 const SearchBar = () => {
-  // const [manufacturer, setManufacturer] = useState<string>('')
-  // const [model, setModel] = useState<string>('')
-
   const [values, setValues] = useState<IValues>({
     manufacturer: '',
     model: ''
+  })
+  const [errors, setErrors] = useState({
+    manufacturer: false,
+    model: false
   })
 
   const router = useRouter()
 
   const handleSearch = (e: React.FormEvent) => {
+    setErrors({
+      manufacturer: false,
+      model: false
+    })
     e.preventDefault()
-    if (values.manufacturer === '' || values.model === '') {
-      return alert('Please fill the blank')
-    }
+
     updateSearchParams(
       values.model.toLowerCase(),
       values.manufacturer.toLowerCase()
     )
+    setErrors({
+      manufacturer: true,
+      model: true
+    })
   }
 
   const updateSearchParams = (model: string, manufacturer: string) => {
@@ -50,8 +57,8 @@ const SearchBar = () => {
     if (model) {
       searchParams.set('model', model)
     }
-    if (values.manufacturer) {
-      searchParams.set('manufacturer', values.manufacturer)
+    if (manufacturer) {
+      searchParams.set('manufacturer', manufacturer)
     }
     // Generate the new pathname with the updated search parameters
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`
@@ -88,7 +95,6 @@ const SearchBar = () => {
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`
     router.push(newPathname)
   }
-
   return (
     <div className={styles.search__container}>
       <Grid justifyContent='center' container spacing={1}>
@@ -105,6 +111,7 @@ const SearchBar = () => {
               label='Manufacturer'
               onChange={handleChangeValues}
               size='small'
+              error={errors.manufacturer && !values.manufacturer}
             >
               {manufacturers.map((manufacurer, index: number) => (
                 <MenuItem key={index} value={manufacurer}>
@@ -123,6 +130,9 @@ const SearchBar = () => {
               value={values.model}
               onChange={handleChangeValues}
               size='small'
+              error={
+                errors.model && !values.model && Boolean(!values.manufacturer)
+              }
             />
           </FormControl>
         </Grid>
