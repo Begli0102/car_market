@@ -1,5 +1,5 @@
 import { Typography, Stack, Alert } from '@mui/material'
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 import CarCard from './components/CarCard'
 import ShowPagination from './components/Pagination'
 import ShowLess from './components/ShowLess'
@@ -27,9 +27,9 @@ export default async function Home ({ searchParams }: HomeProps) {
       )}
       {!isDataEmpty ? (
         <div className={styles.result__container}>
-          {allCars.map((car, index) => (
+          {allCars.map((car) => (
             <Suspense fallback={<Loading />}>
-              <CarCard key={index} car={car} />
+              <CarCard car={car} />
             </Suspense>
           ))}
           <div className={styles.more_less_buttons}>

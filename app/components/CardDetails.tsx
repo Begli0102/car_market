@@ -3,7 +3,6 @@ import React from 'react'
 import {
   Dialog,
   DialogContent,
-  DialogTitle,
   Typography,
   IconButton,
   Grid,
@@ -35,11 +34,7 @@ const CardDetails = ({ isOpen, setIsOpen, car }: ICars) => {
         maxWidth='xs'
       >
         <div className={styles.title__container}>
-          <Grid
-            container
-            justifyContent='center'
-            alignItems='center'
-          >
+          <Grid container justifyContent='center' alignItems='center'>
             <Grid item xs={12} md={4}>
               <div className={styles.card__image}>
                 <Image
