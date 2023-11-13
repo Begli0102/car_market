@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Pagination from '@mui/material/Pagination'
-import Stack from '@mui/material/Stack'
+import { Container, Box } from '@mui/material'
 
 const ShowPagination = ({ limit, allCars, setCars }: any) => {
   const [page, setPage] = useState(1)
@@ -10,14 +10,16 @@ const ShowPagination = ({ limit, allCars, setCars }: any) => {
   }
 
   return (
-    <Stack>
-      <Pagination
-        count={Math.ceil(allCars / limit)}
-        page={page}
-        onChange={handleChange}
-        color='primary'
-      />
-    </Stack>
+    <Container maxWidth='sm'>
+      <Box my={2} display="flex" justifyContent="center">
+        <Pagination
+          count={Math.ceil(allCars / limit)}
+          page={page}
+          onChange={handleChange}
+          color='primary'
+        />
+      </Box>
+    </Container>
   )
 }
 
