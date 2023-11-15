@@ -57,8 +57,7 @@
   justify-content: space-between;
   background-color: #eaeaea;
   position: 'relative';
-  height: 'auto';
-  padding: 5%;
+  padding: 3%;
 }
 .header__left {
   padding: 2rem;
