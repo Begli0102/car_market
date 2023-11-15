@@ -27,7 +27,7 @@ export default async function Home ({ searchParams }: HomeProps) {
       )}
       {!isDataEmpty ? (
         <div className={styles.result__container}>
-          {allCars.map((car) => (
+          {allCars.map(car => (
             <Suspense fallback={<Loading />}>
               <CarCard car={car} />
             </Suspense>
@@ -43,7 +43,7 @@ export default async function Home ({ searchParams }: HomeProps) {
         </div>
       ) : (
         <div className={styles.error__container}>
-          <Stack sx={{ minWidth: '300px' }}>
+          <Stack sx={{ minWidth: '300px', minHeight: '100vh' }}>
             <Alert
               variant='filled'
               severity='warning'
