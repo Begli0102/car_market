@@ -103,11 +103,6 @@ const SearchBar = () => {
     }
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`
     router.push(newPathname)
-
-    setValues({
-      manufacturer: '',
-      model: ''
-    })
   }
   return (
     <div className={styles.search__container}>
