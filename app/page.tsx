@@ -1,7 +1,7 @@
 import { Typography, Stack, Alert } from '@mui/material'
 import { Suspense } from 'react'
 import CarCard from './components/CarCard'
-import ShowPagination from './components/Pagination'
+// import ShowPagination from './components/Pagination'
 import ShowLess from './components/ShowLess'
 import ShowMore from './components/ShowMore'
 import { HomeProps } from './interface'
@@ -22,9 +22,9 @@ export default async function Home ({ searchParams }: HomeProps) {
 
   return (
     <main className={styles.main}>
-      {allCars.length > 10 && (
+      {/* {allCars.length > 10 && (
         <ShowPagination limit={10} allCars={allCars.length} />
-      )}
+      )} */}
       {!isDataEmpty ? (
         <div className={styles.result__container}>
           {allCars.map(car => (
