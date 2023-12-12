@@ -12,10 +12,11 @@ import {
   Zoom
 } from '@mui/material'
 import { useRouter } from 'next/navigation'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 import { manufacturers } from '../consonants/index'
 import styles from '../page.module.css'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
+import { Event } from '@mui/icons-material';
 
 interface IValues {
   manufacturer: string
@@ -66,29 +67,31 @@ const SearchBar = () => {
     router.push(newPathname)
   }
 
-  // const handleChangeManufacturer = (e: SelectChangeEvent) => {
-  //   const { name, value } = e.target
-  //   setValues({
-  //     ...values,
-  //     [name]: value
-  //   })
-  // }
-
-  // const handleChangeModel = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target
-  //   setValues({
-  //     ...values,
-  //     [name]: value
-  //   })
-  // }
-
-  const handleChangeValues = (e: any) => {
-    const { name, value } = e.target
+  const handleChangeManufacturer = (event: SelectChangeEvent) => {
+    const { name, value } = event.target
     setValues({
       ...values,
       [name]: value
     })
   }
+
+  const handleChangeModel = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
+
+  // const handleChangeValues = (
+  //   event: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent
+  // ) => {
+  //   const { name, value } = event.target
+  //   setValues({
+  //     ...values,
+  //     [name]: value
+  //   })
+  // }
 
   const handleResetParams = () => {
     const searchParams = new URLSearchParams(window.location.search)
@@ -118,7 +121,7 @@ const SearchBar = () => {
               value={values.manufacturer}
               name='manufacturer'
               label='Manufacturer'
-              onChange={handleChangeValues}
+              onChange={handleChangeManufacturer}
               size='small'
               error={errors.manufacturer && !values.manufacturer}
             >
@@ -137,7 +140,7 @@ const SearchBar = () => {
               id='model'
               name='model'
               value={values.model}
-              onChange={handleChangeValues}
+              onChange={handleChangeModel}
               size='small'
               error={
                 errors.model && !values.model && Boolean(!values.manufacturer)

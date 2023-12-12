@@ -43,7 +43,7 @@ export default async function Home ({ searchParams }: HomeProps) {
         </div>
       ) : (
         <div className={styles.error__container}>
-          <Stack sx={{ minWidth: '300px', minHeight: '100vh' }}>
+          <Stack sx={{ minWidth: '280px', minHeight: '100vh' }}>
             <Alert
               variant='filled'
               severity='warning'
