@@ -12,11 +12,10 @@ import {
   Zoom
 } from '@mui/material'
 import { useRouter } from 'next/navigation'
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import React, { useState } from 'react'
 import { manufacturers } from '../consonants/index'
 import styles from '../page.module.css'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
-import { Event } from '@mui/icons-material';
 
 interface IValues {
   manufacturer: string
@@ -82,16 +81,6 @@ const SearchBar = () => {
       [name]: value
     })
   }
-
-  // const handleChangeValues = (
-  //   event: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent
-  // ) => {
-  //   const { name, value } = event.target
-  //   setValues({
-  //     ...values,
-  //     [name]: value
-  //   })
-  // }
 
   const handleResetParams = () => {
     const searchParams = new URLSearchParams(window.location.search)
