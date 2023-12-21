@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Button, Grid, Paper, TextField, Typography } from '@mui/material'
+import { Button, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import styles from '../page.module.css'
 
 const LoginPage = () => {
@@ -41,6 +41,18 @@ const LoginPage = () => {
                   >
                     Sign in
                   </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant='body2' gutterBottom>
+                    Don't have an account?
+                    <Link style={{ textDecoration: 'none' }} href={'/signup'}>
+                      <span
+                        style={{ marginLeft: '5px', textDecoration: 'none' }}
+                      >
+                        Sign up
+                      </span>
+                    </Link>
+                  </Typography>
                 </Grid>
               </Grid>
             </form>
