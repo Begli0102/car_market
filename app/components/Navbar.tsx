@@ -19,7 +19,9 @@ const Navbar = () => (
         />
       </Link>
       <div className={styles.navbar__chip}>
-        <Chip label='Sign up' variant='outlined' sx={{ color: '#ffff' }} />
+        <Link href={'/login'}>
+          <Chip label='Sign in' variant='outlined' sx={{ color: '#ffff' }} />
+        </Link>
       </div>
     </nav>
   </header>
