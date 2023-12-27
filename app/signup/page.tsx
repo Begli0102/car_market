@@ -1,10 +1,36 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Grid, Paper, TextField, Typography } from '@mui/material'
 import styles from '../page.module.css'
 
 const SignupPage = () => {
-  const handleSubmit = () => {}
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!name || !email || !password) {
+      alert('Please fill the blank')
+    }
+    try {
+      const response = await fetch('api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        })
+      })
+      if (response.ok) {
+        const form = event.target as HTMLFormElement
+        form.reset()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className={styles.signup__container}>
       <Grid container justifyContent='center'>
@@ -21,6 +47,7 @@ const SignupPage = () => {
                     variant='outlined'
                     size='small'
                     fullWidth
+                    onChange={e => setName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -29,6 +56,7 @@ const SignupPage = () => {
                     variant='outlined'
                     size='small'
                     fullWidth
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -38,6 +66,7 @@ const SignupPage = () => {
                     variant='outlined'
                     fullWidth
                     size='small'
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
