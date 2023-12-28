@@ -2,11 +2,14 @@
 import React, { useState } from 'react'
 import { Button, Grid, Paper, TextField, Typography } from '@mui/material'
 import styles from '../page.module.css'
+import { useRouter } from 'next/navigation'
 
 const SignupPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -14,9 +17,11 @@ const SignupPage = () => {
       alert('Please fill the blank')
     }
     try {
-      const response = await fetch('api/signup', {
+      const response = await fetch('/api/signup', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           name,
           email,
@@ -26,6 +31,7 @@ const SignupPage = () => {
       if (response.ok) {
         const form = event.target as HTMLFormElement
         form.reset()
+        router.push('/login')
       }
     } catch (error) {
       console.log(error)
