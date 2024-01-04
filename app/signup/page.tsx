@@ -57,7 +57,7 @@ const SignupPage = () => {
       if (response.ok) {
         const form = event.target as HTMLFormElement
         form.reset()
-        // router.push('/login')
+        router.push('/login')
       }
     } catch (error) {
       console.log(error)
