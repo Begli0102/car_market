@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import { Poppins } from 'next/font/google'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
-import { AuthProvider } from './providers';
+import { AuthProvider } from './providers'
 
 export const metadata: Metadata = {
   title: 'Car Market',
@@ -26,8 +26,6 @@ export default function RootLayout ({
     <html lang='en'>
       <body className={poppins.className}>
         <Navbar />
-        <Header />
-        <SearchBar />
         <AuthProvider>{children}</AuthProvider>
         <Footer />
       </body>
