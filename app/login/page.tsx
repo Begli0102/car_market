@@ -19,6 +19,7 @@ const LoginPage = () => {
         password,
         redirect: false
       })
+
       router.replace('/')
     } catch (error) {
       console.log(error)
