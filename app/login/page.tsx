@@ -1,10 +1,29 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Grid, Link, Paper, TextField, Typography } from '@mui/material'
 import styles from '../page.module.css'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const LoginPage = () => {
-  const handleSubmit = () => {}
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const router = useRouter()
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    try {
+      const response = await signIn('credentials', {
+        email,
+        password,
+        redirect: false
+      })
+      router.replace('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className={styles.login__container}>
       <Grid container justifyContent='center'>
@@ -21,6 +40,7 @@ const LoginPage = () => {
                     variant='outlined'
                     size='small'
                     fullWidth
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -30,6 +50,7 @@ const LoginPage = () => {
                     variant='outlined'
                     fullWidth
                     size='small'
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>

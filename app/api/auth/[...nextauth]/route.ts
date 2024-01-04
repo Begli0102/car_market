@@ -19,7 +19,7 @@ const authOptions = {
   },
   secret: process.env.NEXT_SECRET,
   pages: {
-    login: '/login'
+    signIn: '/login'
   }
 }
 
