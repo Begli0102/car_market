@@ -3,6 +3,7 @@ import User from '@/models/user'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
+import { IUser } from '@/app/interface'
 
 export const authOptions = {
   providers: [
@@ -11,7 +12,7 @@ export const authOptions = {
       credentials: {},
 
       async authorize (credentials) {
-        const { email, password } = credentials
+        const { email, password } = credentials as IUser
 
         try {
           await mongoDB()

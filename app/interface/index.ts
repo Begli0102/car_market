@@ -42,3 +42,8 @@ export interface ShowMoreProps {
 export interface ShowLessProps {
   pageNumber: number
 }
+
+export interface IUser {
+  email: string
+  password: string
+}
