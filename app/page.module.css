@@ -30,12 +30,6 @@
 }
 
 .navbar {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 1rem 1.5rem;
 }
 .navbar_link {
