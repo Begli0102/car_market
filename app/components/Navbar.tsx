@@ -7,7 +7,6 @@ import { signOut, useSession } from 'next-auth/react'
 
 const Navbar = () => {
   const { data: session } = useSession()
-  console.log(session)
 
   return (
     <header className={styles.navbar__container}>
@@ -38,7 +37,7 @@ const Navbar = () => {
               <Typography sx={{ color: '#ffff' }} gutterBottom>
                 Hi -
                 <span style={{ color: 'primary' }}>
-                   {session?.user?.name}. Nice to see you !
+                  {session?.user?.name}. Nice to see you !
                 </span>
               </Typography>
             ) : (

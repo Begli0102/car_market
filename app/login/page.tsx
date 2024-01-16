@@ -8,21 +8,27 @@ import { useRouter } from 'next/navigation'
 const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(false)
 
   const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
     try {
       const response = await signIn('credentials', {
         email,
         password,
         redirect: false
       })
-
-      router.replace('/')
+      setError(false)
+      if (response.ok) {
+        router.replace('/')
+      }
     } catch (error) {
       console.log(error)
+    } finally {
+      setError(true)
     }
   }
   return (
@@ -42,6 +48,8 @@ const LoginPage = () => {
                     size='small'
                     fullWidth
                     onChange={e => setEmail(e.target.value)}
+                    error={error && !email}
+                    helperText={error && !email && 'Enter the email'}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -52,6 +60,8 @@ const LoginPage = () => {
                     fullWidth
                     size='small'
                     onChange={e => setPassword(e.target.value)}
+                    error={error && !password}
+                    helperText={error && !password && 'Enter the password'}
                   />
                 </Grid>
                 <Grid item xs={12}>

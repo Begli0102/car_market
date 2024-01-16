@@ -15,15 +15,13 @@ const SignupPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [error, setError] = useState(false)
+  const [userExist, setUserExist] = useState('')
 
   const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!name || !email || !password) {
-      alert('Please fill the blank')
-    }
 
     try {
       const userExist = await fetch('/api/userExist', {
@@ -39,9 +37,10 @@ const SignupPage = () => {
       const { user } = await userExist.json()
 
       if (user) {
-        setError('This email exist')
+        setUserExist('This email exist')
         return
       }
+      setError(false)
 
       const response = await fetch('/api/signup', {
         method: 'POST',
@@ -61,6 +60,8 @@ const SignupPage = () => {
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setError(true)
     }
   }
   return (
@@ -71,9 +72,9 @@ const SignupPage = () => {
             <Typography variant='h5' gutterBottom>
               Sign up
             </Typography>
-            {error && (
+            {userExist && (
               <Alert severity='error' sx={{ marginBottom: '10px' }}>
-                {error}
+                {userExist}
               </Alert>
             )}
             <form onSubmit={handleSubmit}>
@@ -85,7 +86,8 @@ const SignupPage = () => {
                     size='small'
                     fullWidth
                     onChange={e => setName(e.target.value)}
-                    error={Boolean(error)}
+                    error={error && !name}
+                    helperText={error && !name && 'Please enter name'}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -95,7 +97,8 @@ const SignupPage = () => {
                     size='small'
                     fullWidth
                     onChange={e => setEmail(e.target.value)}
-                    error={Boolean(error)}
+                    error={error && !email}
+                    helperText={error && !email && 'Please enter email'}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -106,7 +109,8 @@ const SignupPage = () => {
                     fullWidth
                     size='small'
                     onChange={e => setPassword(e.target.value)}
-                    error={Boolean(error)}
+                    error={error && !password}
+                    helperText={error && !password && 'Please enter password'}
                   />
                 </Grid>
                 <Grid item xs={12}>
