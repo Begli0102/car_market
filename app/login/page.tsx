@@ -1,6 +1,14 @@
 'use client'
 import React, { useState } from 'react'
-import { Button, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+import {
+  Button,
+  Grid,
+  Link,
+  Paper,
+  TextField,
+  Typography,
+  Alert
+} from '@mui/material'
 import styles from '../page.module.css'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -9,6 +17,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
+  const [wrongPassword, setWrongPassword] = useState('')
 
   const router = useRouter()
 
@@ -21,10 +30,13 @@ const LoginPage = () => {
         password,
         redirect: false
       })
+
       setError(false)
-      if (response.ok) {
-        router.replace('/')
+      if (response.error) {
+        setWrongPassword('Invalid credentials')
+        return
       }
+      router.replace('/')
     } catch (error) {
       console.log(error)
     } finally {
@@ -39,6 +51,11 @@ const LoginPage = () => {
             <Typography variant='h5' gutterBottom>
               Sign in
             </Typography>
+            {wrongPassword && (
+              <Alert severity='error' sx={{ marginBottom: '10px' }}>
+                {wrongPassword}
+              </Alert>
+            )}
             <form onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
