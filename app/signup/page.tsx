@@ -9,11 +9,9 @@ import {
   Alert
 } from '@mui/material'
 import styles from '../page.module.css'
-import { useRouter, redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { useRouter } from 'next/navigation'
 
-const SignupPage = async () => {
+const SignupPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -65,10 +63,6 @@ const SignupPage = async () => {
     } finally {
       setError(true)
     }
-  }
-  const session = await getServerSession(authOptions)
-  if (session) {
-    redirect('/')
   }
   return (
     <div className={styles.signup__container}>
