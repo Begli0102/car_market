@@ -26,10 +26,10 @@ export default function RootLayout ({
     <html lang='en'>
       <body className={poppins.className}>
         <AuthProvider>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
         </AuthProvider>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   )

@@ -1,7 +1,9 @@
 import { Typography, Stack, Alert } from '@mui/material'
 import { Suspense } from 'react'
 import CarCard from './components/CarCard'
+import Footer from './components/Footer'
 import Header from './components/Header'
+import Navbar from './components/Navbar'
 import SearchBar from './components/SearchBar'
 // import ShowPagination from './components/Pagination'
 import ShowLess from './components/ShowLess'
@@ -24,6 +26,7 @@ export default async function Home ({ searchParams }: HomeProps) {
 
   return (
     <main className={styles.main}>
+      <Navbar />
       {/* {allCars.length > 10 && (
         <ShowPagination limit={10} allCars={allCars.length} />
       )} */}
@@ -60,6 +63,7 @@ export default async function Home ({ searchParams }: HomeProps) {
           </Stack>
         </div>
       )}
+      <Footer />
     </main>
   )
 }

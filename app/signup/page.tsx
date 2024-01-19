@@ -6,7 +6,8 @@ import {
   Paper,
   TextField,
   Typography,
-  Alert
+  Alert,
+  Link
 } from '@mui/material'
 import styles from '../page.module.css'
 import { useRouter } from 'next/navigation'
@@ -122,6 +123,18 @@ const SignupPage = () => {
                   >
                     Sign up
                   </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant='body2' gutterBottom>
+                    Do you want to sign in?
+                    <Link style={{ textDecoration: 'none' }} href={'/login'}>
+                      <span
+                        style={{ marginLeft: '5px', textDecoration: 'none' }}
+                      >
+                        Sign in
+                      </span>
+                    </Link>
+                  </Typography>
                 </Grid>
               </Grid>
             </form>
