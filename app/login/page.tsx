@@ -32,7 +32,7 @@ const LoginPage = () => {
       })
 
       setError(false)
-      if (response.error) {
+      if (response?.error) {
         setWrongPassword('Invalid credentials')
         return
       }
