@@ -11,9 +11,11 @@ import {
 } from '@mui/material'
 import styles from '../page.module.css'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
-const LoginPage = () => {
+const LoginPage = async () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
@@ -43,6 +45,12 @@ const LoginPage = () => {
       setError(true)
     }
   }
+
+  const session = await getServerSession(authOptions)
+  if (session) {
+    redirect('/')
+  }
+
   return (
     <div className={styles.login__container}>
       <Grid container justifyContent='center'>
