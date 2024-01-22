@@ -12,6 +12,7 @@ import {
 import styles from '../page.module.css'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import GoogleAccount from '../components/GoogleAccount'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -51,6 +52,7 @@ const LoginPage = () => {
             <Typography variant='h5' gutterBottom>
               Sign in
             </Typography>
+            <GoogleAccount />
             {wrongPassword && (
               <Alert severity='error' sx={{ marginBottom: '10px' }}>
                 {wrongPassword}
