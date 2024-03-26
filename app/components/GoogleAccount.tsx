@@ -1,14 +1,17 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
-import { Button, Paper, Box, Typography } from '@mui/material'
+import { Button, Box, Typography } from '@mui/material'
 import GoogleLogo from '../../public/google-logo.png'
 import styles from '../page.module.css'
+import { signIn } from 'next-auth/react'
 
 const GoogleAccount = () => {
   return (
     <main className={styles.google_account}>
       <Box style={{ padding: '5px', margin: '10px auto' }}>
         <Button
+          onClick={() => signIn('google')}
           variant='contained'
           style={{
             backgroundColor: '#fff',

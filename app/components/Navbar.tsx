@@ -6,7 +6,7 @@ import { Chip, Grid, Typography } from '@mui/material'
 import { signOut, useSession } from 'next-auth/react'
 
 const Navbar = () => {
-  const { data: session } = useSession()
+  const { status, data: session } = useSession()
 
   return (
     <header className={styles.navbar__container}>
@@ -33,7 +33,7 @@ const Navbar = () => {
             lg={9}
             sx={{ display: 'flex', justifyContent: 'center' }}
           >
-            {session?.user?.name ? (
+            {status === 'authenticated' ? (
               <Typography sx={{ color: '#ffff' }} gutterBottom>
                 Hi -
                 <span style={{ color: 'primary' }}>

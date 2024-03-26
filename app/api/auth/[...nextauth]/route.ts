@@ -4,6 +4,7 @@ import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
 import { IUser } from '@/app/interface'
+import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions = {
   providers: [
@@ -33,6 +34,10 @@ export const authOptions = {
           console.log('Error: ', error)
         }
       }
+    }),
+    GoogleProvider({
+      clientId: process.env.CLIENT_ID as string,
+      clientSecret: process.env.CLIENT_SECRET as string
     })
   ],
   session: {
