@@ -1,12 +1,10 @@
-import { Typography, Stack, Alert } from '@mui/material'
 import { Suspense } from 'react'
 import CarCard from './components/CarCard'
-import ErrorComponent from './components/Error';
+import ErrorComponent from './components/Error'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 // import ShowPagination from './components/Pagination'
-import ShowLess from './components/ShowLess'
-import ShowMore from './components/ShowMore'
+import ShowMoreOrLess from './components/ShowMoreOrLess'
 import { HomeProps } from './interface'
 import Loading from './loading'
 import styles from './page.module.css'
@@ -20,6 +18,8 @@ export default async function Home ({ searchParams }: HomeProps) {
     fuel: searchParams.fuel || '',
     limit: searchParams.limit || 10
   })
+
+  console.log(typeof allCars)
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
@@ -37,14 +37,11 @@ export default async function Home ({ searchParams }: HomeProps) {
               <CarCard car={car} />
             </Suspense>
           ))}
-          <div className={styles.more_less_buttons}>
-            {allCars.length >= 10 && (
-              <ShowMore pageNumber={(searchParams.limit || 10) / 10} />
-            )}
-            {Number(searchParams?.limit) > 10 && allCars.length > 10 && (
-              <ShowLess pageNumber={(searchParams.limit || 10) / 10} />
-            )}
-          </div>
+          <ShowMoreOrLess
+            allCars={allCars}
+            pageNumber={(searchParams.limit || 10) / 10}
+            searchParams={searchParams}
+          />
         </div>
       ) : (
         <ErrorComponent />
