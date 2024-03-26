@@ -1,6 +1,7 @@
 import { Typography, Stack, Alert } from '@mui/material'
 import { Suspense } from 'react'
 import CarCard from './components/CarCard'
+import ErrorComponent from './components/Error';
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 // import ShowPagination from './components/Pagination'
@@ -46,19 +47,7 @@ export default async function Home ({ searchParams }: HomeProps) {
           </div>
         </div>
       ) : (
-        <div className={styles.error__container}>
-          <Stack sx={{ minWidth: '280px', minHeight: '100vh' }}>
-            <Alert
-              variant='filled'
-              severity='warning'
-              sx={{ alignItems: 'center' }}
-            >
-              <Typography variant='body2' gutterBottom>
-                Oops, no results
-              </Typography>
-            </Alert>
-          </Stack>
-        </div>
+        <ErrorComponent />
       )}
     </main>
   )
