@@ -5,13 +5,27 @@ import { Button, Box, Typography } from '@mui/material'
 import GoogleLogo from '../../public/google-logo.png'
 import styles from '../page.module.css'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const GoogleAccount = () => {
+  const router = useRouter()
+
+  const handleSignInClick = async () => {
+    try {
+      await signIn('google')
+
+      router.push('/')
+    } catch (error) {
+      // Handle unexpected errors
+      console.error('Error signing in with Google:', error)
+    }
+  }
+
   return (
     <main className={styles.google_account}>
       <Box style={{ padding: '5px', margin: '10px auto' }}>
         <Button
-          onClick={() => signIn('google')}
+          onClick={handleSignInClick}
           variant='contained'
           style={{
             backgroundColor: '#fff',

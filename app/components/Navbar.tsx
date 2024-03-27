@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../page.module.css'
 import { Chip, Grid, Typography } from '@mui/material'
 import { signOut, useSession } from 'next-auth/react'
+import carLogo from '../../public/car-logo.svg'
 
 const Navbar = () => {
   const { status, data: session } = useSession()
@@ -15,7 +16,7 @@ const Navbar = () => {
           <Grid item xs={3} sm={4} md={1} lg={1} mr={2}>
             <Link href='/' className={styles.navbar_link}>
               <Image
-                src='/4ydEzuq5aFVUjXdvHLripG-7eb7ed609239464291ac4b2f1dac2927-autoscout24redesign23-1100.png'
+                src={carLogo}
                 alt='logo'
                 width={118}
                 height={40}
